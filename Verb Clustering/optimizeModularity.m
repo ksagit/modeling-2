@@ -35,10 +35,10 @@ function [c,t] = optimizeModularity(A)
 N = size(A,1);      % number of nodes / items
 
 %% Hierarchical clustering with post-hoc modularity optimization %%
-[tree, clusters, cc] = runHC(A);
+[tree, clusters, cc] = runHC(A);        % first column of clusters: single cluster; last column: singleton clusters
 Q = zeros(N,1);
 for c = 1:N
-    Q(c) = computeQ(A,clusters(c,:));
+    Q(c) = computeQ(A,clusters(:,c));
 end
 Q = flipud(Q);            % first value is now modularity for the singleton clustering; 
                           % last value is modularity for a single cluster solution

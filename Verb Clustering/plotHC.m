@@ -16,7 +16,7 @@ function plotHC(tree,Q,cc)
 
 N = length(Q);  % number of nodes
 
-f = figure(1);
+f = figure;
 clf reset
 set(f, 'units', 'normalized', 'position',[0.1 0.1 0.8*0.6 0.8]); 
 

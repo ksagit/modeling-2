@@ -16,14 +16,14 @@ function [tree, clusters, cc] = runHC(A)
 %%% Idan Blank, August 8, 2017; EvLab rulz!
 
 D = max(A(:))-A+min(A(:));                  % convert similarities to dissimilarities
-n = size(D,1);
-distVec = zeros(nchoosek(n,2),1);           % convert dissimilarities to a vector like those given by the pdist function
+N = size(D,1);
+distVec = zeros(nchoosek(N,2),1);           % convert dissimilarities to a vector like those given by the pdist function
 row = 1;
-for i = 1:n
-    distVec(row:(row+n-i-1)) = D((i+1):end, i);
-    row = row+n-i;
+for i = 1:N
+    distVec(row:(row+N-i-1)) = D((i+1):end, i);
+    row = row+N-i;
 end
 distVec = distVec';
 tree = linkage(distVec,'average');          % Matlab built-in function 
 cc = cophenet(tree,distVec);                % Matlab built-in function
-clusters = cluster(tree, 'maxclust', 1:n);  % Matlab built-in function
+clusters = cluster(tree, 'maxclust', 1:N);  % Matlab built-in function
