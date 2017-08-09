@@ -1,4 +1,4 @@
-function [cInd,t] = optimizeModularity(A)
+function [c,t] = optimizeModularity(A)
 
 %%% Community detection in a similarity matrix
 
@@ -63,6 +63,34 @@ c(:,2) = cWin;
 t(2) = max(Q);
 
 %% Louvain method %%
+addpath(genpath('/Users/iblank/Desktop/MIT/Experiments/DynamicNetworksTools/GenLouvain2.0/'));
+nIter = 100;         % number of iterations (to take into account the random initalization of the method)
+gamma = 1;
+C = zeros(N,nIter);
+Q = zeros(nIter,1);
+for i = 1:nIter
+    gamma = 1;                  % default value
+    k = sum(A);
+    twoM = sum(k);              % sum of all similarities in the A
+    B = A - gamma*k'*k/twoM;	% Modularity matrix
+    [currC, currQ] = genlouvain(B);
+    C(:,i) = currC;
+    Q(i) = currQ/twoM;
+end
+
+consensusMat = ones(N,N);      % consensus similarity matrix
+for i = 1:(N-1)
+    for j = (i+1):N
+        consensusMat(i,j) = sum(C(i,:)==C(j,:))/nIter;
+        consensusMat(j,i) = consensusMat(i,j);
+    end
+end
+k = sum(consensusMat,1);
+twoM = sum(k);                      % sum of all similarities in the A
+B = consensusMat - gamma*k'*k/twoM;	% Modularity matrix
+[C, ~] = genlouvain(B);
+c(:,3) = C;
+t(3) = computeQ(A,C);
 
 % QDS = zeros(N,1);
 % QDS(c) = computeQDS(A,clusters(:,c));
