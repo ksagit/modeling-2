@@ -82,3 +82,11 @@ if sum(tree(2:end,3)-tree(1:(end-1),3) < 0) > 1
         tree(i,3) = nNodes(N+i)/N;
     end
 end
+for i = 2:(N-1)                     % make sure there are no identical distances (for plotting)
+    if tree(i,3) == tree(i-1,3)
+        nextVal = i + find(tree((i+1):end,3) > tree(i,3), 1);
+        for j = i:(nextVal-1)
+        tree(j,3) = (tree(j,3)+tree(nextVal,3))/2;
+        end
+    end
+end
