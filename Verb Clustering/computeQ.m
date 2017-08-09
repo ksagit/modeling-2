@@ -12,9 +12,7 @@ function Q = computeQ(A,c)
 
 %%% Idan Blank, Aug 08 2017; EvLab rulz! 
 
-A = triu(A,1) + tril(A,-1);     % remove similarities between each node and itself 
-                                % (twoM below assumes there are no numbers in the diagonal)
-                                % also, the diagonal has a constant contribution to modularity across different partitions
+% A = triu(A,1) + tril(A,-1);     % remove similarities between each node and itself 
 k = sum(A,1);                   % degree of each node
 twoM = sum(k);                  % Two M, twice the sum of all weights in the network
 cNames = unique(c);             % cluster labels

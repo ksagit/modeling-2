@@ -58,7 +58,7 @@ for cInd = 1:N
 end
 cWin = clusters(:,find(Q==max(Q)));   % clustering with the highest modularity
 Q = flipud(Q);                        % first value is now modularity for the singleton clustering; 
-% plotHC(tree,Q,cWin,cc);             % this often gives a tangled tree, no need to plot
+plotHC(tree,Q,cWin,cc);             % this often gives a tangled tree, no need to plot
 c(:,2) = cWin;
 t(2) = max(Q);
 
@@ -91,6 +91,8 @@ B = consensusMat - gamma*k'*k/twoM;	% Modularity matrix
 [C, ~] = genlouvain(B);
 c(:,3) = C;
 t(3) = computeQ(A,C);
+
+%% optQDS: clustering via optimizing modularity-density %%
 
 % QDS = zeros(N,1);
 % QDS(c) = computeQDS(A,clusters(:,c));
