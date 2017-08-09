@@ -1,9 +1,8 @@
-function [tree, clusters, cc] = runHC(A)
+function [tree, clusters, cc] = runHC(D)
 
 %%% Hierarchical clustering based on average linkage
 %%% INPUT:
-%%% A = a symmetric NxN matrix of weighted edges between N nodes
-%%%     (or similarities between N items)
+%%% D = a symmetric NxN matrix of dissimilarities between N nodes
 %%% OUTPUT:
 %%% tree = a Nx3 matrix, containing information about the structure of 
 %%%        the hierarchical tree (type "help linkage" for details)
@@ -11,11 +10,10 @@ function [tree, clusters, cc] = runHC(A)
 %%%            obtained by cutting the tree at some level; all possible
 %%%            partitions are computed (from each node in its own cluster, through 
 %%%            to all nodes in a single cluster)
-%%% cc = cophonetic correlation (how faithfully tree captures the original similarities)
+%%% cc = cophenetic correlation (how faithfully tree captures the original similarities)
 
 %%% Idan Blank, August 8, 2017; EvLab rulz!
 
-D = max(A(:))-A+min(A(:));                  % convert similarities to dissimilarities
 N = size(D,1);
 distVec = zeros(nchoosek(N,2),1);           % convert dissimilarities to a vector like those given by the pdist function
 row = 1;

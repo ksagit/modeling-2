@@ -11,7 +11,7 @@ function plotHC(tree,Q,cWin,cc)
 %%%     licensed by tree (first value is the modularity for singleton clustering;
 %%%     last value is modularity for a single cluster solution)
 %%% cWin = Nx1 vector with cluster assignments for the highest modularity
-%%% cc = cophonetic correlation (how faithfully tree captures the original data)
+%%% cc = cophenetic correlation (how faithfully tree captures the original data)
 
 %%% Idan Blank, Aug 8 2017; EvLab rulz!
 
@@ -30,6 +30,8 @@ for i = 1:(N-2)
     xVals(i+1) = tree(i,3) + 0.5*(tree(i+1,3)-tree(i,3));
 end
 xVals(end) = 1.025*tree(end,3);
+[xVals,i] = sort(xVals,'ascend');
+Q = Q(i);
 plot(xVals, Q, '-ko');
 set(gca, 'xlim', [0.8*min(tree(:,3)), 1.05*max(tree(:,3))]);
 set(gca, 'ylim', [min(Q)-sign(min(Q))*0.5*min(Q), 1.05*max(Q)]);
@@ -94,6 +96,6 @@ yLims = get(gca,'ylim');
 plot([xVal, xVal], [0 yLims(2)], '--k');
 
 set(gca, 'xlim', [0.8*min(tree(:,3)), 1.05*max(tree(:,3))]);
-s = suptitle(['Dendrogram (cophonetic correlation = ', num2str(round(1000*cc)/1000), '), ', ...
+s = suptitle(['Dendrogram (cophenetic correlation = ', num2str(round(1000*cc)/1000), '), ', ...
     num2str(nClusters), ' clusters (Q = ', num2str(round(1000*max(Q))/1000), ')']);
 set(s, 'fontname', 'calibri', 'fontsize', 14, 'fontweight', 'bold');

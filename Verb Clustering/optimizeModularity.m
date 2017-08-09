@@ -1,4 +1,4 @@
-function [c,t] = optimizeModularity(A)
+function [cInd,t] = optimizeModularity(A)
 
 %%% Community detection in a similarity matrix
 
@@ -6,9 +6,8 @@ function [c,t] = optimizeModularity(A)
 %%% A = a symmetric NxN matrix of similarities between N items
 
 %%% OUTPUT:
-%%% c = Nx3 matrix, each column contains community assignments of the N items by a different method 
-%%% t = table of modularity and modularity-density values for each method
-%%%     (higher = better)
+%%% c = Nx5 matrix, each column contains community assignments of the N items by a different method 
+%%% t = 1x5 vector, modularity / modularity-density values for each method (higher = better)
 
 %%% COMMUNITY DETECTION METHODS:
 %%% HC = hierarchical clustering (hierarchy built regardless of modularity,
@@ -33,18 +32,37 @@ function [c,t] = optimizeModularity(A)
 %%% Idan Blank, August 8 2017; EvLab Rulz!
 
 N = size(A,1);      % number of nodes / items
+D = 1-A;            % NxN matrix of dissimilarities
+c = zeros(N,5);
+t = zeros(1,5);
 
-%% Hierarchical clustering with post-hoc modularity optimization %%
-[tree, clusters, cc] = runHC(A);     % first column of clusters: single cluster; last column: singleton clusters
+%% HC: hierarchical clustering with post-hoc modularity optimization %%
+[tree, clusters, cc] = runHC(D);     % first column of clusters: single cluster; last column: singleton clusters
 Q = zeros(N,1);
-for c = 1:N
-    Q(c) = computeQ(A,clusters(:,c));
+for cInd = 1:N
+    Q(cInd) = computeQ(A,clusters(:,cInd));
 end
 
-cWin = clusters(:,find(Q==max(Q)));  % clustering with the highest modularity
+cWin = clusters(:,find(Q==max(Q)));   % clustering with the highest modularity
 Q = flipud(Q);                        % first value is now modularity for the singleton clustering; 
                                       % last value is modularity for a single cluster solution                                      
-plotHC(tree,Q,cWin,cc,1);
+plotHC(tree,Q,cWin,cc);
+c(:,1) = cWin;
+t(1) = max(Q);
+
+%% optQ: hierarchical clustering via by modularity optimization %%
+[tree, clusters, cc] = runGreedyOptQ(A,D);
+Q = zeros(N,1);
+for cInd = 1:N
+    Q(cInd) = computeQ(A,clusters(:,cInd));
+end
+cWin = clusters(:,find(Q==max(Q)));   % clustering with the highest modularity
+Q = flipud(Q);                        % first value is now modularity for the singleton clustering; 
+% plotHC(tree,Q,cWin,cc);             % this often gives a tangled tree, no need to plot
+c(:,2) = cWin;
+t(2) = max(Q);
+
+%% Louvain method %%
 
 % QDS = zeros(N,1);
 % QDS(c) = computeQDS(A,clusters(:,c));
