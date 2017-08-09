@@ -37,19 +37,15 @@ N = size(A,1);      % number of nodes / items
 %% Hierarchical clustering with post-hoc modularity optimization %%
 [tree, clusters, cc] = runHC(A);     % first column of clusters: single cluster; last column: singleton clusters
 Q = zeros(N,1);
-QDS = zeros(N,1);
 for c = 1:N
     Q(c) = computeQ(A,clusters(:,c));
-    QDS(c) = computeQDS(A,clusters(:,c));
 end
 
-cWinQ = clusters(:,find(Q==max(Q)));  % clustering with the highest modularity
+cWin = clusters(:,find(Q==max(Q)));  % clustering with the highest modularity
 Q = flipud(Q);                        % first value is now modularity for the singleton clustering; 
                                       % last value is modularity for a single cluster solution                                      
-plotHC(tree,Q,cWinQ,cc,1);
+plotHC(tree,Q,cWin,cc,1);
 
-cWinQDS = clusters(:,find(QDS==max(QDS)));  % clustering with highest modularity-density
-QDS = flipud(QDS);
-plotHC(tree,QDS,cWinQDS,cc,2);
-QDS
-
+% QDS = zeros(N,1);
+% QDS(c) = computeQDS(A,clusters(:,c));
+% QDS = flipud(QDS);

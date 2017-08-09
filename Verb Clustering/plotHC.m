@@ -1,4 +1,4 @@
-function plotHC(tree,Q,cWin,cc,theType)
+function plotHC(tree,Q,cWin,cc)
 
 %%% Plots the hierarchical tree obtained from runHC.m
 %%% as well as modularity values for each partition licensed by the tree,
@@ -12,7 +12,6 @@ function plotHC(tree,Q,cWin,cc,theType)
 %%%     last value is modularity for a single cluster solution)
 %%% cWin = Nx1 vector with cluster assignments for the highest modularity
 %%% cc = cophonetic correlation (how faithfully tree captures the original data)
-%%% theType = 1 for Q, 2 for QDS
 
 %%% Idan Blank, Aug 8 2017; EvLab rulz!
 
@@ -34,11 +33,7 @@ xVals(end) = 1.025*tree(end,3);
 plot(xVals, Q, '-ko');
 set(gca, 'xlim', [0.8*min(tree(:,3)), 1.05*max(tree(:,3))]);
 set(gca, 'ylim', [min(Q)-sign(min(Q))*0.5*min(Q), 1.05*max(Q)]);
-if theType == 1
-    ylabel('Modularity');
-elseif theType == 2
-    ylabel('Modularity-density');
-end
+ylabel('Modularity');
 set(gca, 'xtick', []);
 
 %% Find best clustering and set up an appropriate color scheme %%
@@ -99,11 +94,6 @@ yLims = get(gca,'ylim');
 plot([xVal, xVal], [0 yLims(2)], '--k');
 
 set(gca, 'xlim', [0.8*min(tree(:,3)), 1.05*max(tree(:,3))]);
-if theType == 1
-    theType = 'Q';
-elseif theType == 2
-    theType = 'QDS';
-end
 s = suptitle(['Dendrogram (cophonetic correlation = ', num2str(round(1000*cc)/1000), '), ', ...
-    num2str(nClusters), ' clusters (', theType, ' = ', num2str(round(1000*max(Q))/1000), ')']);
+    num2str(nClusters), ' clusters (Q = ', num2str(round(1000*max(Q))/1000), ')']);
 set(s, 'fontname', 'calibri', 'fontsize', 14, 'fontweight', 'bold');
