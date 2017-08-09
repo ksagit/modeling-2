@@ -1,4 +1,4 @@
-function plotHC(tree,Q,cc)
+function plotHC(tree,Q,cWin,cc,theType)
 
 %%% Plots the hierarchical tree obtained from runHC.m
 %%% as well as modularity values for each partition licensed by the tree,
@@ -7,10 +7,12 @@ function plotHC(tree,Q,cc)
 %%% INPUT:
 %%% tree = a Nx3 matrix, containing information about the structure of 
 %%%        the hierarchical tree (type "help linkage" for details)
-%%% Q = Nx1 vector with modularity values for each parition licensed by tree
-%%%     (first value is the modularity for singleton clustering; last value
-%%%     is modularity for a single cluster solution)
+%%% Q = Nx1 vector with modularity (or modularity-density) values for each parition
+%%%     licensed by tree (first value is the modularity for singleton clustering;
+%%%     last value is modularity for a single cluster solution)
+%%% cWin = Nx1 vector with cluster assignments for the highest modularity
 %%% cc = cophonetic correlation (how faithfully tree captures the original data)
+%%% theType = 1 for Q, 2 for QDS
 
 %%% Idan Blank, Aug 8 2017; EvLab rulz!
 
@@ -31,14 +33,16 @@ end
 xVals(end) = 1.025*tree(end,3);
 plot(xVals, Q, '-ko');
 set(gca, 'xlim', [0.8*min(tree(:,3)), 1.05*max(tree(:,3))]);
-set(gca, 'ylim', [0.5*min(Q), 1.05*max(Q)]);
-ylabel('Modularity');
+set(gca, 'ylim', [min(Q)-sign(min(Q))*0.5*min(Q), 1.05*max(Q)]);
+if theType == 1
+    ylabel('Modularity');
+elseif theType == 2
+    ylabel('Modularity-density');
+end
 set(gca, 'xtick', []);
 
 %% Find best clustering and set up an appropriate color scheme %%
-ind = find(Q == max(Q), 1);
-c = cluster(tree, 'maxclust', ind);                         % the best clustering
-nClusters = length(unique(c));                              % number of clusters (ideally would be equal to ind)
+nClusters = length(unique(cWin));                           % number of clusters (ideally would be equal to ind)
 colors = colormap(jet);                                     % "jet" coloring scheme
 nColors = size(colors,1);
 colors = colors(randperm(nColors),:);                       % shuffle the colors (so that nearby clusters don't have similar colors)
@@ -58,7 +62,6 @@ branchInd = 1;
 row = 1;
 while (branchInd <= length(d)) && (row <= N)
     x = get(d(branchInd), 'xData');                   % plotting information for current branch    
-    y = get(d(branchInd), 'yData');
     if x(1) == 0
         oldColors(row,:) = get(d(branchInd), 'Color');
         row = row+1;
@@ -96,6 +99,11 @@ yLims = get(gca,'ylim');
 plot([xVal, xVal], [0 yLims(2)], '--k');
 
 set(gca, 'xlim', [0.8*min(tree(:,3)), 1.05*max(tree(:,3))]);
+if theType == 1
+    theType = 'Q';
+elseif theType == 2
+    theType = 'QDS';
+end
 s = suptitle(['Dendrogram (cophonetic correlation = ', num2str(round(1000*cc)/1000), '), ', ...
-    num2str(nClusters), ' clusters (Q = ', num2str(round(1000*max(Q))/1000), ')']);
+    num2str(nClusters), ' clusters (', theType, ' = ', num2str(round(1000*max(Q))/1000), ')']);
 set(s, 'fontname', 'calibri', 'fontsize', 14, 'fontweight', 'bold');
