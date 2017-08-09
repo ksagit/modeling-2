@@ -16,7 +16,6 @@ function [tree, clusters, cc] = runGreedyOptQ(A,D)
 
 %%% Idan Blank, August 8, 2017; EvLab rulz!
 
-% A = triu(A,1) + tril(A,-1);                 % remove similarities between each node and itself 
 M = sum(sum(A))/2;                          % sum of all pairwise similarities 
 N = size(A,1);
 tree = zeros(N-1,3);                        % similar to what the linkage function returns

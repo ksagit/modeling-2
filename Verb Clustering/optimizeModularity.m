@@ -31,8 +31,8 @@ function [c,t] = optimizeModularity(A)
 
 %%% Idan Blank, August 8 2017; EvLab Rulz!
 
-N = size(A,1);      % number of nodes / items
-D = 1-A;            % NxN matrix of dissimilarities
+N = size(A,1);             % number of nodes / items
+D = 1-A;                   % NxN matrix of dissimilarities
 c = zeros(N,5);
 t = zeros(1,5);
 
