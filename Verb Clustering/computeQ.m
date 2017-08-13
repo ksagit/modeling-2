@@ -23,7 +23,6 @@ for cInd = 1:nC
     ACurr = sum(sum(A(cNodes,cNodes)));           % sum of all pairwise similarities between nodes within current community / cluster
     kCurr = k(cNodes);                            % degrees of nodes within current community / cluster
     kProducts = kCurr'*kCurr;                     % all products between the degrees of every two nodes
-    kProducts = triu(kProducts,1) + tril(kProducts,-1);
     kProducts = sum(kProducts(:));                % sum of all products between the degrees of every two nodes
     Q = Q + ACurr - (kProducts/twoM);
 end

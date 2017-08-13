@@ -40,11 +40,32 @@ set(gca, 'xtick', []);
 
 %% Find best clustering and set up an appropriate color scheme %%
 nClusters = length(unique(cWin));                           % number of clusters (ideally would be equal to ind)
-colors = colormap(jet);                                     % "jet" coloring scheme
+colors = colormap('prism');                                 % "prism" coloring scheme
+colors = colors(1:6,:);                                     % there are only 6 unique colors in this color scheme (repeating pattern)
 nColors = size(colors,1);
-colors = colors(randperm(nColors),:);                       % shuffle the colors (so that nearby clusters don't have similar colors)
-newColors = repmat(colors, [floor(nClusters/nColors), 1]);  % replicate colors so that the number of rows in colors = number of clusters
-newColors = [newColors; colors(1:mod(nClusters,nColors),:)];
+nRep = ceil(nClusters/nColors);                             % how many times the color scheme needs to be replicated (with slight changes)
+if nRep == 1
+    inds = [1 4 5 3 6 2];
+    colors = colors(inds(1:nClusters),:);
+else
+    for i = 1:(nRep-1)
+        for j = 1:nColors
+            j1 = j;
+            j2 = mod(j,nColors)+1;
+            color1 = colors(j1,:);
+            color2 = colors(j2,:);
+            colorDiff = color2-color1;
+            colors(i*nColors+j,:) = color1 + (i/nRep)*colorDiff;
+        end       
+    end
+end
+for i = 2:nRep                                              % shuffle the order of each nColors colors
+    inds = (i-1)*nColors+(1:nColors);
+    currColors = colors(inds,:);
+    colors(inds(1),:) = currColors(mod(i-1,nColors)+1,:);
+    colors(inds(2:end),:) = currColors(setdiff(randperm(nColors),mod(i-1,nColors)+1),:);
+end
+newColors= colors;
 
 %% Tree plot %%
 subplot(10,1,3:10)
