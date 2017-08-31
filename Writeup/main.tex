@@ -16,12 +16,21 @@
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{csquotes}
 \usepackage{comment}
+\usepackage{authblk}
 
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
 
 \title{Verb Clustering Project Write-up}
-\author{Kyle Sargent}
+\author[1]{Kyle Sarent}
+\author[2]{Melissa Kline}
+\author[2]{Idan Blank}
+\author[3,4]{Evelina Fedorenko}
+
+\affil[1]{Harvard University}
+\affil[2]{Department of Brain \& Cognitive Sciences, Massachusetts Institute of Technology}
+\affil[3]{Massachusetts General Hospital}
+\affil[4]{Harvard Medical School}
 
 \begin{document}
 \maketitle
@@ -42,6 +51,7 @@ Levin (1993) developed the notion of a verb class. This classification was exten
 \end{displayquote}
 
 We are interested in demonstrating that GLoVe encodes syntax information; thus, the most natural thing to try and predict are the frames a verb fits into. It is worth noting that in VerbNet, whether or not a verb fits in a frame is true or false, with no gray area - in practice, such judgments by humans are much fuzzier. 
+
 
 Any verb in VerbNet belongs to some number of classes, and each class expresses some number of the 291 frames. Suppose we number the frames $f_1... f_{291}$. The notion of a “binary frame vector” associated to a verb is as follows: Suppose a verb vhas associated binary frame vector $v$, then we assign the following value to entry $i$ of the frame vector:
 
