@@ -21,7 +21,9 @@
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
 
-\title{Verb Clustering Project Write-up}
+\title{Predicting syntactic/semantic sentence frames from GLoVe vectors for verbs}
+%this is not a great title, suggestions welcome
+
 \author[1]{Kyle Sarent}
 \author[2]{Melissa Kline}
 \author[2]{Idan Blank}
@@ -36,14 +38,37 @@
 \maketitle
 
 \begin{abstract}
-This document is intended to be a readable discussion of my findings regarding the relationship between VerbNet and GLoVe. Comments welcome!
+IN OUTLINE FORM
+
+(0) While computational models of semantics that are based on purely distributional information have done well (CITES), semantic theories predict a role for frame-level representations, and these may explain why verb semantics are so hard. What are these frames and where do they come from? 
+
+(1) Glove predicts frames pretty well!
+
+(2) Ooh \... glove contains much more than just the frames, aka frames explain a tiny amount of GLOVE variance. 
+
+(2a) Glove predicts frames, but frames don't predict glove. This is sensible from a linguistic preference. 
+
+(3) So, what are human judgments? Some kind of combination of large distributional information (GLOVE) and structured semantic knowledge (VerbNet)? Maybe so! Here is SimVerb, which tells us directly how similar ppl find verbs.  Verbnet thinks those same verbs are X similar, while Glove thinks they are Y similar. These 3 similarity matrices compare LIKE SO, suggesting a possible role for explicit frame representations in human language, and that NL researchers should take further looks at VerbNet. 
+
 \end{abstract}
 
-\section{Predicting VerbNet frames from GLoVe vectors}
+This is an intro, stating what we are doing, what we'll set out to prove, and the bullet-point results. It's verb short. 
 
-In this section, I will attempt to demonstrate for my lab supervisors that GLoVe vectors for verbs encode statistically significant syntax information. Where possible, the simplest models and evaluation benchmarks have been chosen to provide the most convincing proof. First, some background is in order.
+\section{Background}
+\subsection{Verbs and argument structure}
+Nouns are different from verbs
+Verbs appear in certain frames
+There are lots of theories as to why this is, or how to describe them, but the basic insight is that clustering by semantics 
 
-\subsection{Introduction and Background}
+
+%Kyle please format the following as a nice 2-column table or set of examples
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{VerbTable.png}
+\caption{\label{fig:frog} Two verb classes from VerbNet (Palmer, CITATION), showing a subset of frames that are used to identify the classes, and examples of verb in that class.) No semantic criteria are used to generate the classes, but the verbs nevertheless share aspects of meaning.  *Note that this sentence is ungrammatical in the \emph{conative reading} (Bill attempted to roll the door but didn't move it, in parallel with "Bill pushed at the door.") The only grammatical interpretation is the \emph{locative reading} where Bill himself rolls towards the door. }
+\end{figure}
+
+
 Levin (1993) developed the notion of a verb class. This classification was extended and enriched by Verbnet, a database of about 8000 verb/class instances. The website of VerbNet describes a verb class:
 
 \begin{displayquote}
@@ -57,9 +82,15 @@ Any verb in VerbNet belongs to some number of classes, and each class expresses 
 
 	\[ v_i =1  \text{if $v$ belongs to frame $i$ in any of its class instantiations, and 0 otherwise} \]
 
+\subsection{Distributional models of verb semantics}
+
+IDAN/KYLE WRITE - can be short, focus on what's different about this - primarily, we treat verbs just like any other words. Describe/cite what Glove is. This is the section to head off objections about sense/POS disambiguation as well - say whether we're using a Glove version that does, acknowledge any limitation, and move on. )
+
 On the other hand, for most of the verbs in VerbNet, we have GLoVe vectors. For this project, I wanted to make use of distributional information from Wikipedia and Twitter - thus, GLoVe vectors from both were concatenated to form a 400-dimensional vector of real numbers that encodes its distributional information. 
 
-\subsection{Summary of the Prediction Task}
+\section{Predicting VerbNet frames from GLoVe, and vice versa}
+
+\subsection{Summary of the prediction task - VerbNet from GLoVe}
 
 We can reduce from the problem of recovering verb syntax from GLoVe to learning a good approximate mapping from the 400-dimensional GLoVe space to the 291-dimensional space of binary frame vectors. In the field of machine learning, this is known as a multi-label classification problem.
 
@@ -71,7 +102,7 @@ An advantage of a logistic regression model is that its transparency will allow 
 
 To ensure robust predictions, positive training examples in both training and testing sets, and to simplify the problem of disentangling the data into training and testing sets such that this latter condition is satisfied, all frames with 5 or fewer positive training examples have been excluded from our prediction task. Since there are 232 frames with more than 5 positive training examples, we restrict our investigation to these frames (for the time being).
 
-\subsection{Discussion of Results}
+\subsubsection{Discussion of Results}
 
 Since we are evaluating hundreds of independent binary classifiers, the Area Under the Receiver Operating Curve (AUROC) seems a fair benchmark for our model. The receiver operating curve of a binary classifier is essentially the true positive rate of the classifier, plotted against its false positive rate. That is, the probability it will correctly classify a positive example as a function of the probability it will incorrectly classify a negative example. When these points are joined they form a curve, and the area under it, or AUROC, measures the effectiveness of a binary classifier by giving a number between .5 and 1.0 that measures the strength of the tradeoff between false positives and true positives - at .5, a model is no better than a random classifier. At 1.0, the model classifies all training examples perfectly. 
 
@@ -132,6 +163,9 @@ Suppose we scrambled the assignment of verbs to frames. Our model could still pi
 These models perform no better than random chance. Indeed, it's clear in this case that 
 \[  \lim_{\# \text{training examples} \rightarrow \infty} AUC = .5 \]
 Which is as we expect for a collection of fundamentally random (uninformed) classifiers. This is good because it tells us GLoVe vectors give us frame information when (and only when) this information is correctly paired, which is another confirmation of our hypothesis.
+
+\section{Modeling human similarity judgments from VerbNet and GLoVe}
+
 
 \section{Diagnostic Verbs and Diagnostic Frames}
 
