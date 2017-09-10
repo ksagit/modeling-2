@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  8 SEP 2017 16:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  10 SEP 2017 19:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -457,11 +457,6 @@ Overfull \hbox (8.53592pt too wide) in paragraph at lines 99--100
  [][] 
  []
 
-
-Underfull \hbox (badness 1152) in paragraph at lines 104--105
-\OT1/ptm/m/n/10.95 riched by Verb-net, a database of about 8000
- []
-
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ú in font ptmr7t!
@@ -469,12 +464,12 @@ Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ù in font ptmr7t!
 
-Underfull \hbox (badness 2173) in paragraph at lines 107--108
+Underfull \hbox (badness 2173) in paragraph at lines 108--109
 \OT1/ptm/m/n/10.95 con-sist-ing of a syn-tac-tic de-scrip-tion
  []
 
 
-Underfull \hbox (badness 1062) in paragraph at lines 107--108
+Underfull \hbox (badness 1062) in paragraph at lines 108--109
 \OT1/ptm/m/n/10.95 and se-man-tic pred-i-cates with a tem-
  []
 
@@ -492,113 +487,118 @@ Missing character: There is no ù in font ptmr7t!
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ô in font ptmr7t!
- <AUC_plot5.png, id=18, 433.62pt x 289.08pt>
+ <AUC_plot5.png, id=23, 433.62pt x 289.08pt>
 File: AUC_plot5.png Graphic file (type png)
  <use AUC_plot5.png>
-Package pdftex.def Info: AUC_plot5.png used on input line 144.
+Package pdftex.def Info: AUC_plot5.png used on input line 147.
 (pdftex.def)             Requested size: 227.62204pt x 151.74721pt.
 
-Overfull \hbox (8.53592pt too wide) in paragraph at lines 144--145
+Overfull \hbox (8.53592pt too wide) in paragraph at lines 147--148
  [][] 
  []
 
-<auc_plot15.png, id=19, 433.62pt x 289.08pt>
+[2] <auc_plot15.png, id=37, 433.62pt x 289.08pt>
 File: auc_plot15.png Graphic file (type png)
  <use auc_plot15.png>
-Package pdftex.def Info: auc_plot15.png used on input line 152.
+Package pdftex.def Info: auc_plot15.png used on input line 155.
 (pdftex.def)             Requested size: 227.62204pt x 151.74721pt.
 
-Overfull \hbox (8.53592pt too wide) in paragraph at lines 152--153
+Overfull \hbox (8.53592pt too wide) in paragraph at lines 155--156
  [][] 
  []
 
-[2] <auc_plot30.png, id=32, 433.62pt x 289.08pt>
+<auc_plot30.png, id=38, 433.62pt x 289.08pt>
 File: auc_plot30.png Graphic file (type png)
  <use auc_plot30.png>
-Package pdftex.def Info: auc_plot30.png used on input line 158.
+Package pdftex.def Info: auc_plot30.png used on input line 161.
 (pdftex.def)             Requested size: 227.62204pt x 151.74721pt.
 
-Overfull \hbox (8.53592pt too wide) in paragraph at lines 158--159
+Overfull \hbox (8.53592pt too wide) in paragraph at lines 161--162
  [][] 
  []
 
-<auc_plot50.png, id=33, 433.62pt x 289.08pt>
+<auc_plot50.png, id=39, 433.62pt x 289.08pt>
 File: auc_plot50.png Graphic file (type png)
  <use auc_plot50.png>
-Package pdftex.def Info: auc_plot50.png used on input line 164.
+Package pdftex.def Info: auc_plot50.png used on input line 167.
 (pdftex.def)             Requested size: 227.62204pt x 151.74721pt.
 
-Overfull \hbox (8.53592pt too wide) in paragraph at lines 164--165
+Overfull \hbox (8.53592pt too wide) in paragraph at lines 167--168
  [][] 
  []
 
-<auc_scatter5.png, id=34, 433.62pt x 289.08pt>
+<auc_scatter5.png, id=40, 433.62pt x 289.08pt>
 File: auc_scatter5.png Graphic file (type png)
  <use auc_scatter5.png>
-Package pdftex.def Info: auc_scatter5.png used on input line 172.
+Package pdftex.def Info: auc_scatter5.png used on input line 175.
 (pdftex.def)             Requested size: 227.62204pt x 151.74721pt.
 
-Overfull \hbox (8.53592pt too wide) in paragraph at lines 172--173
+Overfull \hbox (8.53592pt too wide) in paragraph at lines 175--176
  [][] 
  []
 
 [3 <./AUC_plot5.png> <./auc_plot15.png> <./auc_plot30.png> <./auc_plot50.png> <
-./auc_scatter5.png>] <auc_plot5rand.png, id=49, 433.62pt x 289.08pt>
+./auc_scatter5.png>] <auc_plot5rand.png, id=55, 433.62pt x 289.08pt>
 File: auc_plot5rand.png Graphic file (type png)
 
 <use auc_plot5rand.png>
-Package pdftex.def Info: auc_plot5rand.png used on input line 184.
+Package pdftex.def Info: auc_plot5rand.png used on input line 187.
 (pdftex.def)             Requested size: 227.62204pt x 151.74721pt.
 
-Overfull \hbox (8.53592pt too wide) in paragraph at lines 184--185
+Overfull \hbox (8.53592pt too wide) in paragraph at lines 187--188
  [][] 
  []
 
-<auc_scatter5rand.png, id=50, 433.62pt x 289.08pt>
+<auc_scatter5rand.png, id=56, 433.62pt x 289.08pt>
 File: auc_scatter5rand.png Graphic file (type png)
  <use auc_scatter5rand.png>
-Package pdftex.def Info: auc_scatter5rand.png used on input line 190.
+Package pdftex.def Info: auc_scatter5rand.png used on input line 193.
 (pdftex.def)             Requested size: 227.62204pt x 151.74721pt.
 
-Overfull \hbox (8.53592pt too wide) in paragraph at lines 190--191
+Overfull \hbox (8.53592pt too wide) in paragraph at lines 193--194
  [][] 
  []
 
-<aucbydimension.png, id=51, 523.9575pt x 347.2975pt>
+<aucbydimension.png, id=57, 523.9575pt x 347.2975pt>
 File: aucbydimension.png Graphic file (type png)
  <use aucbydimension.png>
-Package pdftex.def Info: aucbydimension.png used on input line 205.
+Package pdftex.def Info: aucbydimension.png used on input line 208.
 (pdftex.def)             Requested size: 227.62204pt x 150.87181pt.
 
-Overfull \hbox (8.53592pt too wide) in paragraph at lines 205--206
+Overfull \hbox (8.53592pt too wide) in paragraph at lines 208--209
  [][] 
  []
 
-(./acl2017.bbl [4 <./auc_plot5rand.png> <./auc_scatter5rand.png> <./aucbydimens
-ion.png>])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 251.
- [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 251.
+(./acl2017.bbl
+Underfull \hbox (badness 2005) in paragraph at lines 15--22
+[]\OT1/ptm/m/n/10 Jeffrey Pen-ning-ton, Richard Socher, and Christo-
+ []
+
+[4 <./auc_plot5rand.png> <./auc_scatter5rand.png> <./aucbydimension.png>])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 254.
+
+[5]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 254.
  (./acl2017.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 251.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 251.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 254.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 254.
 Package rerunfilecheck Info: File `acl2017.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 251.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 254.
  )
 (\end occurred when \iffalse on line 337 was incomplete) 
 Here is how much of TeX's memory you used:
- 7706 strings out of 492995
- 110041 string characters out of 6132704
- 221230 words of memory out of 5000000
- 11116 multiletter control sequences out of 15000+600000
+ 7686 strings out of 492995
+ 109816 string characters out of 6132704
+ 220058 words of memory out of 5000000
+ 11101 multiletter control sequences out of 15000+600000
  26408 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 35i,14n,37p,928b,488s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 35i,14n,37p,928b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/201
 7/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2017/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/fon
@@ -613,10 +613,10 @@ ic/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public
 w/times/utmb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/ut
 mr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
 
-Output written on acl2017.pdf (5 pages, 518717 bytes).
+Output written on acl2017.pdf (5 pages, 514346 bytes).
 PDF statistics:
- 141 PDF objects out of 1000 (max. 8388607)
- 102 compressed objects within 2 object streams
- 33 named destinations out of 1000 (max. 500000)
+ 134 PDF objects out of 1000 (max. 8388607)
+ 96 compressed objects within 1 object stream
+ 28 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

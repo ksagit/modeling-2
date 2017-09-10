@@ -36,7 +36,7 @@
 
 \title{Predicting syntactic sentence frames from GLoVe vectors for verbs}
 
-\author[1]{Kyle Sarent}
+\author[1]{Kyle Sagrent}
 \author[2]{Melissa Kline}
 \author[2]{Idan Blank}
 \author[3,4]{Evelina Fedorenko}
@@ -97,10 +97,11 @@ There are lots of theories as to why this is, or how to describe them, but the b
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\textwidth]{VerbTable.png}
-	\caption{\label{fig:frog} Two verb classes from VerbNet (Palmer, CITATION), showing a subset of frames that are used to identify the classes, and examples of verb in that class.) No semantic criteria are used to generate the classes, but the verbs nevertheless share aspects of meaning.  *Note that this sentence is ungrammatical in the \emph{conative reading} (Bill attempted to roll the door but didn't move it, in parallel with "Bill pushed at the door.") The only grammatical interpretation is the \emph{locative reading} where Bill himself rolls towards the door. }
+	\caption{\label{fig:frog} Two verb classes from VerbNet (Palmer, CITATION), showing a subset of frames that are used to identify the classes, and examples of verb in that class.)}
 \end{figure}
 
-
+No semantic criteria are used to generate the classes, but the verbs nevertheless share aspects of meaning.  *Note that this sentence is ungrammatical in the \emph{conative reading} (Bill attempted to roll the door but didn't move it, in parallel with "Bill pushed at the door.") The only grammatical interpretation is the \emph{locative reading} where Bill himself rolls towards the door. 
+\cite{10.2307/41217861}
 Levin (1993) developed the notion of a verb class. This classification was extended and enriched by Verbnet, a database of about 8000 verb/class instances. The website of VerbNet describes a verb class:
 
 \begin{displayquote}
@@ -116,6 +117,8 @@ $v_i =1$ if $v$ belongs to frame $i$ in any of its class instantiations, and 0 o
 \subsection{Distributional models of verb semantics}
 
 IDAN/KYLE WRITE - can be short, focus on what's different about this - primarily, we treat verbs just like any other words. Describe/cite what Glove is. This is the section to head off objections about sense/POS disambiguation as well - say whether we're using a Glove version that does, acknowledge any limitation, and move on. )
+
+\cite{pennington2014glove} presented informationally rich word embeddings that performed well on analogy tasks and similarity tasks. 
 
 On the other hand, for most of the verbs in VerbNet, we have GLoVe vectors. For this project, I wanted to make use of distributional information from Wikipedia and Twitter - thus, GLoVe vectors from both were concatenated to form a 400-dimensional vector of real numbers that encodes its distributional information. 
 
@@ -196,9 +199,9 @@ These models perform no better than random chance. Indeed, it's clear from figur
 Which is as we expect for a collection of fundamentally random (uninformed) classifiers. This is good because it tells us GLoVe vectors give us frame information when (and only when) this information is correctly paired, which is another confirmation of our hypothesis.
 
 \subsection{Dimensionality reduction of word embeddings}
-It is possible to make predictions from our word embeddings that are nearly as good using only a fraction of the dimensionality. Given data which we have split into 80\% training and 20\% testing, we can use the training data to discover a transformation designed to preserve syntax information, that maps our word embeddings from $\mathbb{R}^{100}$ to $\mathbb{R}^d$ where $d < 100$ (details in appendix). We then re-train our logistic regressions on the reduced-dimension training data and explore its performance on the reduced-dimension test set. 
+It is possible to make predictions from our word embeddings that are nearly as good using only a fraction of the dimensionality. Given data which we have split into 80\% training and 20\% testing, we can use the training data to discover a transformation designed to preserve syntax information, that maps our word embeddings from $\mathbb{R}^{100}$ to $\mathbb{R}^d$ where $d < 100$ (details in appendix). We can then re-train our logistic regressions on the reduced-dimension training data and explore their performance on the reduced-dimension test set. 
 
-Suppose we restrict to the 183 frames most represented in our set of verbs, and ask how performance of our frame classifiers degrades as a function of the number of original dimensions of our word embeddings that we use. Consider figure 9, a plot of the average AUROC over the 183 frame classifers as a function of the number of dimensions onto which we have projected our word embeddings. 
+Suppose we restrict to the 183 frames most represented in our set of verbs, and ask how performance of our frame classifiers degrades as a function of the number of original dimensions of our word embeddings that we use. Consider figure 9, a plot of the average AUROC over the 183 frame classifers as a function of the number of dimensions onto which we have projected our word embeddings.
 
 \begin{figure}
 	\centering
